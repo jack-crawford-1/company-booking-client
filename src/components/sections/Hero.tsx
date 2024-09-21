@@ -1,12 +1,12 @@
 const Hero = () => {
   return (
-    <div className="pt-40 w-full min-h-screen relative bg-gradient-to-r from-gray-200 to-blue-100 flex flex-col items-center justify-center">
-      <div className="w-2/3 md:w-1/2 h-full justify-center items-center flex flex-col">
+    <div className="pt-40 w-full min-h-screen relative bg-gradient-to-r from-gray-200 to-blue-100 flex md:flex-row flex-col items-center justify-around lg:p-20 md:p-10">
+      <div className="w-3/4 flex flex-col items-center justify-center lg:max-w-[45%] h-full">
         <div>
-          <h1 className="text-5xl font-bold text-center pb-5">
+          <h1 className="text-5xl xl:text-6xl 2xl:text-7xl font-bold text-center pb-5">
             Dummy Dental Surgery
           </h1>
-          <h2 className="text-2xl font-bold text-center pb-5">
+          <h2 className="text-2xl font-bold text-center pb-10">
             Trusted Local Dentist
           </h2>
         </div>
@@ -19,7 +19,6 @@ const Hero = () => {
             Veritatis error fugit quo possimus ips.
           </p>
         </div>
-
         <div className="flex flex-col sm:flex-row pb-10 ">
           <button
             onClick={() => {
@@ -38,6 +37,13 @@ const Hero = () => {
             Book Appointment
           </button>
         </div>
+      </div>
+      <div className="w-1/4 pb-10">
+        <img
+          src="/assets/images/king-protea.png"
+          alt="flower"
+          className="w-full"
+        />
       </div>
     </div>
   );
