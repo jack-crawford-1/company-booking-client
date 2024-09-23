@@ -33,7 +33,7 @@ const Navbar = () => {
           <div className="flex items-center space-x-3">
             <a href="/" className="flex items-center">
               <img
-                src="/assets/images/king-protea.png"
+                src="/assets/icons/tooth.svg"
                 alt="logo"
                 width={50}
                 height={50}

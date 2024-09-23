@@ -1,7 +1,7 @@
 const Hero = () => {
   return (
-    <div className="pt-40 w-full min-h-screen relative bg-gradient-to-r from-gray-200 to-blue-100 flex md:flex-row flex-col items-center justify-around lg:p-20 md:p-10">
-      <div className="w-3/4 flex flex-col items-center justify-center lg:max-w-[45%] h-full">
+    <div className="md:mt-20 pt-40 w-full min-h-screen relative bg-gradient-to-r from-gray-200 to-blue-100 flex md:flex-row flex-col items-center justify-center lg:p-10 md:p-10">
+      <div className="w-3/4  md:w-1/3 flex flex-col  items-center justify-center lg:max-w-[45%] h-full">
         <div>
           <h1 className="text-5xl xl:text-6xl 2xl:text-7xl font-bold text-center pb-5">
             Dummy Dental Surgery
@@ -38,11 +38,12 @@ const Hero = () => {
           </button>
         </div>
       </div>
-      <div className="w-1/4 pb-10">
+
+      <div className="w-1/2 pb-20">
         <img
-          src="/assets/images/king-protea.png"
+          src="/assets/images/dentist1.png"
           alt="flower"
-          className="w-full"
+          className="w-full rounded-xl hidden md:block"
         />
       </div>
     </div>
