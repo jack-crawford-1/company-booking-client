@@ -33,14 +33,14 @@ const Navbar = () => {
           <div className="flex items-center space-x-3">
             <a href="/" className="flex items-center">
               <img
-                src="/assets/icons/tooth.svg"
+                src="/assets/icons/cat-black.svg"
                 alt="logo"
                 width={50}
                 height={50}
                 className="inline-block"
               />
               <span className="text-neutral-400 font-bold text-xl ml-3 hover:text-neutral-500 transition-colors">
-                Dummy Dental Surgery
+                Dummy Home Vet Clinic
               </span>
             </a>
           </div>
@@ -66,7 +66,7 @@ const Navbar = () => {
       </div>
 
       <div
-        className={` absolute left-0 right-0 bg-black-200 backdrop-blur-sm transition-all duration-300 ease-in-out overflow-hidden z-20 mx-auto sm:hidden block ${
+        className={` absolute left-0 right-0 backdrop-blur-sm transition-all duration-300 ease-in-out overflow-hidden z-20 mx-auto sm:hidden block ${
           isOpen ? 'max-h-screen' : 'max-h-0'
         }`}
       >

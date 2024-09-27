@@ -1,8 +1,8 @@
 import './index.css';
 import Hero from './components/sections/Hero';
 import Nav from './components/sections/Nav';
-import About from './components/sections/About';
 import TeamMembers from './components/sections/TeamMembers';
+import BookingSection from './components/sections/bookings/BookingSection';
 
 const App = () => {
   return (
@@ -10,7 +10,7 @@ const App = () => {
       <Nav />
       <Hero />
       <TeamMembers />
-      <About />
+      <BookingSection />
     </div>
   );
 };

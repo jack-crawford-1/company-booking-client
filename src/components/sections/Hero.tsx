@@ -1,17 +1,17 @@
 const Hero = () => {
   return (
-    <div className="md:mt-20 pt-40 w-full min-h-screen relative bg-gradient-to-r from-gray-200 to-blue-100 flex md:flex-row flex-col items-center justify-center lg:p-10 md:p-10">
+    <div className="md:mt-20 pt-40 w-full min-h-screen relative bg-black flex md:flex-row flex-col items-center justify-center lg:p-10 md:p-10 opacity-90">
       <div className="w-3/4  md:w-1/3 flex flex-col  items-center justify-center lg:max-w-[45%] h-full">
-        <div>
+        <div className="text-white">
           <h1 className="text-5xl xl:text-6xl 2xl:text-7xl font-bold text-center pb-5">
-            Dummy Dental Surgery
+            Dummy Home Vet Clinic
           </h1>
           <h2 className="text-2xl font-bold text-center pb-10">
-            Trusted Local Dentist
+            Your pet's health is our priority
           </h2>
         </div>
         <div>
-          <p className="leading-7 text-center pb-10">
+          <p className="leading-7 text-center pb-10 text-white">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti
             eligendi minima repellendus vel nisi ducimus ipsum explicabo facere
             quis optio eos similique error molestias minus assumenda debitis,
@@ -39,9 +39,9 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="w-1/2 pb-20">
+      <div className="w-1/2 pb-20 pl-20">
         <img
-          src="/assets/images/dentist1.png"
+          src="/assets/icons/cat-white.svg"
           alt="flower"
           className="w-full rounded-xl hidden md:block"
         />
