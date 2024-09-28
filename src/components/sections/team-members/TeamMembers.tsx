@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import ReactCardFlip from 'react-card-flip';
-import Front from './team-members/Front';
-import Back from './team-members/Back';
-import teamMembers from '../../data/teamMembers';
+import Front from './Front';
+import Back from './Back';
+import teamMembers from '../../../data/teamMembers';
 
 const TeamMembers = () => {
   const [isFlipped, setIsFlipped] = useState<boolean[]>([false]);

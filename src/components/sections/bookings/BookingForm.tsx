@@ -161,12 +161,13 @@ const BookingForm: React.FC<BookingFormProps> = ({ selectedDate }) => {
           <div>
             <button
               type="submit"
-              className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-900 font-medium rounded-lg text-sm px-5 py-3 mt-2 mb-2 hover:bg-gray-700 min-w-[250px] hover:border-green-500  border-4"
+              className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-900 font-medium rounded-lg text-sm px-5 py-3 mt-2 mb-2 hover:bg-gray-700 md:min-w-[250px] w-full md:mr-2 hover:border-green-500  border-4"
             >
               Submit
             </button>
 
             <button
+              type="button"
               onClick={() =>
                 setFormData({
                   ...formData,
@@ -176,7 +177,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ selectedDate }) => {
                   email: '',
                 })
               }
-              className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-900 font-medium rounded-lg text-sm px-5 py-3 mt-2 mb-2 hover:bg-gray-700 min-w-[250px] hover:border-green-500  border-4 md:ml-4"
+              className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-900 font-medium rounded-lg text-sm px-5 py-3 mt-1 mb-1 hover:bg-gray-700 md:min-w-[250px] w-full   hover:border-green-500  border-4 "
             >
               Clear
             </button>
