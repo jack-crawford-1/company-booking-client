@@ -1,10 +1,37 @@
 import { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface BookingFormProps {
   selectedDate: Date;
 }
 
 const BookingForm: React.FC<BookingFormProps> = ({ selectedDate }) => {
+  const toastSuccess = () =>
+    toast.success('Your booking has been submitted!', {
+      position: 'bottom-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
+
+  const toastError = () => {
+    toast.error('Please fill in all fields', {
+      position: 'bottom-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
+  };
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -30,13 +57,26 @@ const BookingForm: React.FC<BookingFormProps> = ({ selectedDate }) => {
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    console.log(formData);
+
+    if (
+      formData.time.trim() === '' ||
+      formData.name.trim() === '' ||
+      formData.email.trim() === '' ||
+      formData.message.trim() === ''
+    ) {
+      toastError();
+      return;
+    }
+
+    toastSuccess();
   };
 
   return (
     <div className="md:w-[600px] w-[400px]">
       <div className="w-full mx-auto bg-black opacity-90 rounded-lg m-5 p-10">
-        <h1 className="text-2xl font-bold mb-4 text-gray-200">Booking Form</h1>
+        <h1 className="text-2xl font-bold mb-4 text-gray-200">
+          New Booking Form
+        </h1>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -91,6 +131,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ selectedDate }) => {
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-green-500 ring-4 sm:text-sm text-black"
               >
                 <option value="">-- Select Time --</option>
+                <option value="Any">Any available</option>
                 <option value="08:00">8:00 AM</option>
                 <option value="09:00">9:00 AM</option>
                 <option value="10:00">10:00 AM</option>
@@ -124,6 +165,22 @@ const BookingForm: React.FC<BookingFormProps> = ({ selectedDate }) => {
             >
               Submit
             </button>
+
+            <button
+              onClick={() =>
+                setFormData({
+                  ...formData,
+                  message: '',
+                  time: '',
+                  name: '',
+                  email: '',
+                })
+              }
+              className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-900 font-medium rounded-lg text-sm px-5 py-3 mt-2 mb-2 hover:bg-gray-700 min-w-[250px] hover:border-green-500  border-4 md:ml-4"
+            >
+              Clear
+            </button>
+            <ToastContainer />
           </div>
         </form>
       </div>
