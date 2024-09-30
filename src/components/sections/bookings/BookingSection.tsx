@@ -4,31 +4,34 @@ import BookingForm from './BookingForm';
 import 'react-calendar/dist/Calendar.css';
 import BookingDescription from './BookingDescription';
 
-type Value = Date | [Date, Date];
+type Value = Date | Date[] | null;
 
 const BookingSection = () => {
   const [value, setValue] = useState<Value>(new Date());
-  const futureAsDate = new Date(Date.now() + 2592000000);
+  const future30Days = new Date(Date.now() + 2592000000);
 
   return (
-    <div className="flex lg:flex-row flex-col justify-center items-center md:gap-20 md:mt-10">
+    <div
+      id="booking-form"
+      className="flex lg:flex-row flex-col justify-center items-center md:gap-20 md:pt-20 md:pb-20"
+    >
       <div className="rounded-lg p-6">
-        <h2 className="pt-10 text-2xl font-semibold mb-4 text-center">
+        <h2 className="text-2xl font-semibold mb-4 text-center">
           Select a Date
         </h2>
         <BookingDescription />
         <Calendar
-          onChange={(value) => setValue(value)}
-          value={value}
-          next2Label={null}
-          prev2Label={null}
+          onChange={(value) => setValue(value as Date)}
+          value={value as Date | null}
           minDate={new Date()}
-          maxDate={futureAsDate}
+          maxDate={future30Days}
         />
       </div>
 
       <div className="md:w-1/2">
-        <BookingForm selectedDate={Array.isArray(value) ? value[0] : value} />
+        <BookingForm
+          selectedDate={value instanceof Date ? value : new Date()}
+        />
       </div>
     </div>
   );

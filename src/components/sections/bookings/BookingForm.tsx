@@ -7,31 +7,6 @@ interface BookingFormProps {
 }
 
 const BookingForm: React.FC<BookingFormProps> = ({ selectedDate }) => {
-  const toastSuccess = () =>
-    toast.success('Your booking has been submitted!', {
-      position: 'bottom-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-    });
-
-  const toastError = () => {
-    toast.error('Please fill in all fields', {
-      position: 'bottom-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-    });
-  };
-
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -43,7 +18,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ selectedDate }) => {
   useEffect(() => {
     setFormData((prevData) => ({
       ...prevData,
-      date: selectedDate.toISOString().substring(0, 10),
+      date: selectedDate.toISOString(),
     }));
   }, [selectedDate]);
 
@@ -64,12 +39,41 @@ const BookingForm: React.FC<BookingFormProps> = ({ selectedDate }) => {
       formData.email.trim() === '' ||
       formData.message.trim() === ''
     ) {
-      toastError();
+      toast.error('Please fill in all fields', {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: 'light',
+      });
       return;
     }
 
-    toastSuccess();
+    toast.success('Your booking has been submitted!', {
+      position: 'bottom-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: 'light',
+    });
   };
+
+  const availableTimes = [
+    '08:00',
+    '09:00',
+    '10:00',
+    '11:00',
+    '12:00',
+    '13:00',
+    '14:00',
+    '15:00',
+    '16:00',
+    '17:00',
+  ];
 
   return (
     <div className="md:w-[600px] w-[400px]">
@@ -130,18 +134,11 @@ const BookingForm: React.FC<BookingFormProps> = ({ selectedDate }) => {
                 onChange={handleChange}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-green-500 ring-4 sm:text-sm text-black"
               >
-                <option value="">-- Select Time --</option>
-                <option value="Any">Any available</option>
-                <option value="08:00">8:00 AM</option>
-                <option value="09:00">9:00 AM</option>
-                <option value="10:00">10:00 AM</option>
-                <option value="11:00">11:00 AM</option>
-                <option value="12:00">12:00 PM</option>
-                <option value="13:00">1:00 PM</option>
-                <option value="14:00">2:00 PM</option>
-                <option value="15:00">3:00 PM</option>
-                <option value="16:00">4:00 PM</option>
-                <option value="17:00">5:00 PM</option>
+                {availableTimes.map((time) => (
+                  <option key={time} value={time}>
+                    {time}
+                  </option>
+                ))}
               </select>
             </label>
           </div>
@@ -153,7 +150,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ selectedDate }) => {
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 min-h-[100px] border border-gray-300 rounded-md focus:ring-green-500 ring-4 sm:text-sm text-black "
+                className="mt-1 block w-full px-3 py-2 min-h-[100px] border border-gray-300 rounded-md focus:ring-green-500 ring-4 sm:text-sm text-black"
               />
             </label>
           </div>
@@ -161,11 +158,10 @@ const BookingForm: React.FC<BookingFormProps> = ({ selectedDate }) => {
           <div>
             <button
               type="submit"
-              className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-900 font-medium rounded-lg text-sm px-5 py-3 mt-2 mb-2 hover:bg-gray-700 md:min-w-[250px] w-full md:mr-2 hover:border-green-500  border-4"
+              className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-3 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 min-w-[250px]"
             >
               Submit
             </button>
-
             <button
               type="button"
               onClick={() =>
@@ -177,7 +173,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ selectedDate }) => {
                   email: '',
                 })
               }
-              className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-900 font-medium rounded-lg text-sm px-5 py-3 mt-1 mb-1 hover:bg-gray-700 md:min-w-[250px] w-full   hover:border-green-500  border-4 "
+              className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-3 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 min-w-[250px]"
             >
               Clear
             </button>

@@ -14,7 +14,10 @@ const TeamMembers = () => {
   };
 
   return (
-    <div className="bg-black w-full min-h-[calc(100vh-5rem)] pt-10 lg:pt-5 text-gray-300 flex flex-col items-center">
+    <div
+      id="about"
+      className="bg-black w-full min-h-[calc(100vh-5rem)] pt-10 lg:pt-5 text-gray-300 flex flex-col items-center md:pb-40"
+    >
       <div className="md:w-2/3 flex lg:flex-row flex-col items-center justify-center mx-auto">
         <h1 className="min-w-fit lg:pr-20 text-5xl xl:text-6xl 2xl:text-7xl font-bold text-center lg:p-10 text-gray-300 pb-5">
           Meet Our Team
