@@ -18,7 +18,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ selectedDate }) => {
   useEffect(() => {
     setFormData((prevData) => ({
       ...prevData,
-      date: selectedDate.toISOString(),
+      date: selectedDate.toLocaleDateString('en-CA'),
     }));
   }, [selectedDate]);
 
@@ -117,7 +117,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ selectedDate }) => {
               <input
                 type="date"
                 name="date"
-                readOnly
+                // readOnly
                 value={formData.date}
                 onChange={handleChange}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-green-500 ring-4 sm:text-sm text-black"
