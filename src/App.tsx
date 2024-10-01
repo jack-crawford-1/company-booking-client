@@ -5,6 +5,9 @@ import TeamMembers from './components/sections/team-members/TeamMembers';
 import BookingSection from './components/sections/bookings/BookingSection';
 import Footer from './components/sections/Footer';
 import Spacer from './components/sections/Spacer';
+import Users from './components/sections/bookings/Users';
+import Timeslots from './components/sections/bookings/Timeslots';
+import Appointments from './components/sections/bookings/Appointments';
 
 const App = () => {
   return (
@@ -16,6 +19,9 @@ const App = () => {
       <Spacer colour={'slategray'} />
       <BookingSection />
       <Spacer colour={'dimgray'} />
+      <Users />
+      <Appointments />
+      <Timeslots />
       <Spacer colour={'gainsboro'} />
       <Spacer colour={'ghostwhite'} />
       <Spacer colour={'darkgray'} />
