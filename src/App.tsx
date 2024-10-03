@@ -20,8 +20,8 @@ const App = () => {
       <BookingSection />
       <Spacer colour={'dimgray'} />
       <Users />
-      <Appointments />
       <Timeslots />
+      <Appointments />
       <Spacer colour={'gainsboro'} />
       <Spacer colour={'ghostwhite'} />
       <Spacer colour={'darkgray'} />

@@ -6,6 +6,13 @@ interface BookingFormProps {
   selectedDate: Date;
 }
 
+interface Timeslot {
+  id: number;
+  start_date: string;
+  start_time: string;
+  is_booked: boolean;
+}
+
 const BookingForm: React.FC<BookingFormProps> = ({ selectedDate }) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -15,11 +22,18 @@ const BookingForm: React.FC<BookingFormProps> = ({ selectedDate }) => {
     message: '',
   });
 
+  const [bookedSlots, setBookedSlots] = useState<Timeslot[]>([]);
+
   useEffect(() => {
     setFormData((prevData) => ({
       ...prevData,
       date: selectedDate.toLocaleDateString('en-CA'),
     }));
+
+    fetch(`/v1/timeslots?date=${selectedDate.toLocaleDateString('en-CA')}`)
+      .then((response) => response.json())
+      .then((data) => setBookedSlots(data.timeslots || []))
+      .catch((error) => console.error('Error fetching booked slots:', error));
   }, [selectedDate]);
 
   const handleChange = (
@@ -31,6 +45,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ selectedDate }) => {
   };
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
+    // TODO  - send form data to database onSubmit
     e.preventDefault();
 
     if (
@@ -63,7 +78,6 @@ const BookingForm: React.FC<BookingFormProps> = ({ selectedDate }) => {
   };
 
   const availableTimes = [
-    '08:00',
     '09:00',
     '10:00',
     '11:00',
@@ -72,7 +86,6 @@ const BookingForm: React.FC<BookingFormProps> = ({ selectedDate }) => {
     '14:00',
     '15:00',
     '16:00',
-    '17:00',
   ];
 
   return (
@@ -117,9 +130,8 @@ const BookingForm: React.FC<BookingFormProps> = ({ selectedDate }) => {
               <input
                 type="date"
                 name="date"
-                // readOnly
+                readOnly
                 value={formData.date}
-                onChange={handleChange}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-green-500 ring-4 sm:text-sm text-black"
               />
             </label>
@@ -134,11 +146,21 @@ const BookingForm: React.FC<BookingFormProps> = ({ selectedDate }) => {
                 onChange={handleChange}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-green-500 ring-4 sm:text-sm text-black"
               >
-                {availableTimes.map((time) => (
-                  <option key={time} value={time}>
-                    {time}
-                  </option>
-                ))}
+                {availableTimes.map((time) => {
+                  const isBooked = bookedSlots.some((slot) => {
+                    return (
+                      slot.start_date.split('T')[0] === formData.date &&
+                      slot.start_time.slice(0, 5) === time &&
+                      slot.is_booked
+                    );
+                  });
+
+                  return (
+                    <option key={time} value={time} disabled={isBooked}>
+                      {time} {isBooked ? '(Booked)' : ''}
+                    </option>
+                  );
+                })}
               </select>
             </label>
           </div>
